@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: zuul
+
+#注册中心
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZoon: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+
+zuul:
+ stripPrefix: false
+ routes:
+#平台注册
+  plf:
+   path: /data/plf/**
+   stripPrefix: false
+   serviceId: plf
+#   数据中心注册
+  dtc:
+   path: /data/dtc/**
+   stripPrefix: false
+   serviceId: dtc
+
+#服务端口
+server:
+  port: 8050
